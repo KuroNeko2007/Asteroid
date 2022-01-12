@@ -17,3 +17,18 @@ function resize(canvas, ratio) {
 
     canvas.style.margin = 'auto';
 }
+
+/**
+ * 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns {number}
+ */
+
+function randomNumberInRange(min, max) {
+    return (Math.random() * (max - min)) + min;
+}
+
+function randomSign() {
+    return Math.random() > 0.5 ? 1 : -1;
+}
