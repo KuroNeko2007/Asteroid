@@ -1,0 +1,14 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    color: white;
+    background-color: #141414;
+}
+
+#gameScreen {
+    display: block;
+    background-color: #141420;
+}
