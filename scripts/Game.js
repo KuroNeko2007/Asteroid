@@ -30,6 +30,10 @@ class Game {
             Bullet.BulletArray[i].draw(this.ctx);
         }
 
+        for (let i = 0; i < Asteroid.AsteroidList.length; i++) {
+            Asteroid.AsteroidList[i].draw(this.ctx);
+        }
+
         window.requestAnimationFrame(() => { this.mainDrawLoop() });
     }
 
@@ -42,6 +46,10 @@ class Game {
 
         for (let i = 0; i < Bullet.BulletArray.length; i++) {
             Bullet.BulletArray[i].update(time);
+        }
+
+        for (let i = 0; i < Asteroid.AsteroidList.length; i++) {
+            Asteroid.AsteroidList[i].update(time);
         }
     }
 
@@ -277,4 +285,45 @@ class Bullet {
         this.x += this.speedX * time / 100;
         this.y += this.speedY * time / 100;
     }
+}
+
+class Asteroid {
+
+    /** @type {Asteroid[]} */
+    static AsteroidList = [];
+
+    constructor(x, y, speed, direction, radius) {
+
+        Asteroid.AsteroidList.push(this);
+
+        this.x = x;
+        this.y = y;
+        this.speedX = speed * Math.cos(direction);
+        this.speedY = speed * Math.sin(direction);
+
+        this.radius = radius;
+        this.color = '#403030';
+    }
+
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} ctx 
+     */
+    draw(ctx) {
+        ctx.save();
+
+        ctx.fillStyle = this.color;
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    update(time) {
+        this.x += this.speedX * time / 100;
+        this.y += this.speedY * time / 100;
+    }
+
 }
